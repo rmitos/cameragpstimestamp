@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CameraActivity">
+
+    <com.otaliastudios.cameraview.CameraView
+        android:id="@+id/cameraView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+        app:cameraAudio="off"
+        app:cameraEngine="camera1"
+        app:cameraFacing="back"
+        app:cameraMode="picture"
+        app:cameraPictureSnapshotMetering="true"
+        app:cameraPlaySounds="true"
+        app:cameraPreview="glSurface">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/camera_controls_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="140dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
+
+            <ImageButton
+                android:id="@+id/switch_camera_button"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@android:color/transparent"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:contentDescription="Camera"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="0dp"
+                android:src="@drawable/baseline_cameraswitch"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/wait_message_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#99000000"
+                android:padding="8dp"
+                android:text="Saving image..."
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/take_photo_button"
+                app:layout_constraintStart_toEndOf="@id/switch_camera_button"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageButton
+                android:id="@+id/take_photo_button"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@android:color/transparent"
+                android:backgroundTint="@android:color/holo_orange_dark"
+                android:contentDescription="Camera"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:padding="0dp"
+                android:src="@drawable/baseline_camera_alt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="#FF0000" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="32dp"
+            android:orientation="horizontal"
+            app:layout_drawOnPictureSnapshot="true"
+            app:layout_drawOnPreview="true">
+
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="120dp"
+                android:layout_height="100dp"
+                android:visibility="visible"
+                app:cameraZoom="17"
+                app:liteMode="true"
+                app:mapType="normal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#CCF6F6F6"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/location_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:lines="6"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textSize="11.5sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </com.otaliastudios.cameraview.CameraView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

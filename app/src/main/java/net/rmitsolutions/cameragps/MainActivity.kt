@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    val startResult =
+    private val startResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val uri =

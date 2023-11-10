@@ -4,6 +4,8 @@ plugins {
     id 'maven-publish'
 }
 
+group = 'com.github.rmitos'
+
 android {
     namespace 'net.rmitsolutions.camera_gps_timestamp'
     compileSdk 33

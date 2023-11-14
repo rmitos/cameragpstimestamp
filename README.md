@@ -15,6 +15,6 @@ dependencyResolutionManagement {
 
  ```
  dependencies {
-	        implementation 'com.github.rmitos:cameragpstimestamp:1.0.0'
+	        implementation 'com.github.rmitos:cameragpstimestamp:latest'
 	}
 ```

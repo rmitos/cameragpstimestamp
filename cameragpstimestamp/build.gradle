@@ -29,11 +29,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = '11'
     }
 
     packagingOptions {
@@ -73,4 +73,18 @@ dependencies {
 
     //for time
     implementation 'com.github.instacart:truetime-android:3.5'
+}
+
+afterEvaluate {
+    publishing {
+        publications {
+// Creates a Maven publication called "release".
+            release(MavenPublication) {
+                from components.release
+                groupId = 'com.github.rmitos'
+                artifactId = 'cameragpstimestamp'
+                version = '1.0.0'
+            }
+        }
+    }
 }

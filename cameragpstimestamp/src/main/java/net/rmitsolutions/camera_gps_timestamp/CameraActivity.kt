@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
@@ -32,6 +33,7 @@ import com.otaliastudios.cameraview.FileCallback
 import com.otaliastudios.cameraview.PictureResult
 import com.otaliastudios.cameraview.controls.Facing
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import net.rmitsolutions.camera_gps_timestamp.databinding.ActivityCameraBinding
 import java.io.File
@@ -69,10 +71,9 @@ class CameraActivity : AppCompatActivity() {
             switchCamera()
         }
 
-        //taking long to get time
-        /*lifecycleScope.launch {
+        lifecycleScope.launch {
             serverTime = getServerTime()
-        }*/
+        }
     }
 
     private val cameraListener = object : CameraListener() {

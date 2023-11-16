@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="net.rmitsolutions.camera_gps_timestamp.CameraActivity" />
+
     </application>
 
 </manifest>

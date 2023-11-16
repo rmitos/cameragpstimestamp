@@ -6,6 +6,7 @@ pluginManagement {
         maven {
             url "https://jitpack.io"
         }
+        mavenLocal()
     }
 }
 dependencyResolutionManagement {
@@ -16,6 +17,7 @@ dependencyResolutionManagement {
         maven {
             url "https://jitpack.io"
         }
+        mavenLocal()
     }
 }
 rootProject.name = "CameraGps"

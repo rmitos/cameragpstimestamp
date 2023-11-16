@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -78,7 +79,10 @@ class CameraActivity : AppCompatActivity() {
 
     private val cameraListener = object : CameraListener() {
         override fun onPictureTaken(result: PictureResult) {
-            val name =
+            result.toBitmap { bitmap ->
+                onFileSaved(bitmap)
+            }
+            /*val name =
                 SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis())
             val folder = File(filesDir, CameraGpsConstants.tempImageFolder)
             if (!folder.exists()) {
@@ -87,7 +91,7 @@ class CameraActivity : AppCompatActivity() {
             val path = "${folder.path}/${name}.jpg"
             result.toFile(File(path), FileCallback {
                 onFileSaved(path)
-            })
+            })*/
         }
     }
 
@@ -104,15 +108,25 @@ class CameraActivity : AppCompatActivity() {
         viewBinding.cameraView.takePictureSnapshot()
     }
 
-    private fun onFileSaved(path: String) {
+    private fun onFileSaved(bitmap: Bitmap?) {
+        if(bitmap == null) {
+            Toast.makeText(
+                this@CameraActivity,
+                "Image not captured.",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        val storePath = MediaStore.Images.Media.insertImage(contentResolver, bitmap, "Images", "")
+        val data = Intent()
+        data.putExtra(CameraGpsConstants.filePathExtra, Uri.parse(storePath))
+        setResult(Activity.RESULT_OK, data)
         Toast.makeText(
             this@CameraActivity,
             "Image saved.",
             Toast.LENGTH_SHORT
         ).show()
-        val data = Intent()
-        data.putExtra(CameraGpsConstants.filePathExtra, Uri.parse(path))
-        setResult(Activity.RESULT_OK, data)
         finish()
     }
 

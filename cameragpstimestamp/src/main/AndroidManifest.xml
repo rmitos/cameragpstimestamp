@@ -17,33 +17,6 @@
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"/>
 
-        <provider
-            android:name=".CameraGpsPhotoFileProvider"
-            android:authorities="${applicationId}.PhotoFileProvider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
-
     </application>
-
-    <queries>
-        <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.GET_CONTENT" />
-            <data android:mimeType="image/*" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.PICK" />
-            <data android:mimeType="image/*" />
-        </intent>
-        <intent>
-            <action android:name="android.intent.action.CHOOSER" />
-        </intent>
-    </queries>
 
 </manifest>

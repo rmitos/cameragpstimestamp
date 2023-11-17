@@ -84,7 +84,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.rmitos'
                 artifactId = 'cameragpstimestamp'
-                version = '1.0.13'
+                version = '1.0.15'
             }
         }
     }

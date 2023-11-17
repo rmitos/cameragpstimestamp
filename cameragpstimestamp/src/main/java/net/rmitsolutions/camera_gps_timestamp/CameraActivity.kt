@@ -79,10 +79,10 @@ class CameraActivity : AppCompatActivity() {
 
     private val cameraListener = object : CameraListener() {
         override fun onPictureTaken(result: PictureResult) {
-            result.toBitmap { bitmap ->
+           /* result.toBitmap { bitmap ->
                 onFileSaved(bitmap)
-            }
-            /*val name =
+            }*/
+            val name =
                 SimpleDateFormat(FILENAME_FORMAT, Locale.US).format(System.currentTimeMillis())
             val folder = File(filesDir, CameraGpsConstants.tempImageFolder)
             if (!folder.exists()) {
@@ -91,7 +91,7 @@ class CameraActivity : AppCompatActivity() {
             val path = "${folder.path}/${name}.jpg"
             result.toFile(File(path), FileCallback {
                 onFileSaved(path)
-            })*/
+            })
         }
     }
 
@@ -108,7 +108,19 @@ class CameraActivity : AppCompatActivity() {
         viewBinding.cameraView.takePictureSnapshot()
     }
 
-    private fun onFileSaved(bitmap: Bitmap?) {
+    private fun onFileSaved(path: String) {
+        Toast.makeText(
+            this@CameraActivity,
+            "Image saved.",
+            Toast.LENGTH_SHORT
+        ).show()
+        val data = Intent()
+        data.putExtra(CameraGpsConstants.filePathExtra, Uri.parse(path))
+        setResult(Activity.RESULT_OK, data)
+        finish()
+    }
+
+ /*   private fun onFileSaved(bitmap: Bitmap?) {
         if(bitmap == null) {
             Toast.makeText(
                 this@CameraActivity,
@@ -128,7 +140,7 @@ class CameraActivity : AppCompatActivity() {
             Toast.LENGTH_SHORT
         ).show()
         finish()
-    }
+    }*/
 
     private fun setMapView(savedInstanceState: Bundle?) {
         viewBinding.mapView.onCreate(savedInstanceState)

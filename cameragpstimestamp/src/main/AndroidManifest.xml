@@ -18,7 +18,7 @@
             android:screenOrientation="portrait"/>
 
         <provider
-            android:name="androidx.core.content.FileProvider"
+            android:name=".CameraGpsPhotoFileProvider"
             android:authorities="${applicationId}.PhotoFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

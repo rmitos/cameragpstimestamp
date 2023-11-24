@@ -116,31 +116,10 @@ class CameraActivity : AppCompatActivity() {
         ).show()
         val data = Intent()
         data.putExtra(CameraGpsConstants.filePathExtra, Uri.parse(path))
+        data.putExtra(CameraGpsConstants.locationExtra, LocationModel(selectedLocation!!.latitude, selectedLocation!!.longitude))
         setResult(Activity.RESULT_OK, data)
         finish()
     }
-
- /*   private fun onFileSaved(bitmap: Bitmap?) {
-        if(bitmap == null) {
-            Toast.makeText(
-                this@CameraActivity,
-                "Image not captured.",
-                Toast.LENGTH_SHORT
-            ).show()
-            return
-        }
-
-        val storePath = MediaStore.Images.Media.insertImage(contentResolver, bitmap, "Images", "")
-        val data = Intent()
-        data.putExtra(CameraGpsConstants.filePathExtra, Uri.parse(storePath))
-        setResult(Activity.RESULT_OK, data)
-        Toast.makeText(
-            this@CameraActivity,
-            "Image saved.",
-            Toast.LENGTH_SHORT
-        ).show()
-        finish()
-    }*/
 
     private fun setMapView(savedInstanceState: Bundle?) {
         viewBinding.mapView.onCreate(savedInstanceState)
@@ -217,7 +196,7 @@ class CameraActivity : AppCompatActivity() {
         val address = geo.getFromLocation(latLang.latitude, latLang.longitude, 1)
         val add = address?.get(0)?.getAddressLine(0)
         viewBinding.locationAddress.text =
-            "Lat:${latLang.latitude}, Long:${latLang.longitude}\n${serverTime}\n${if (add.isNullOrEmpty()) "" else add}"
+            "Lat:${latLang.latitude}, Long:${latLang.longitude}\n${serverTime}\n\n${if (add.isNullOrEmpty()) "" else add}"
     }
 
     private fun bitmapFromVector(vectorResId: Int): BitmapDescriptor {

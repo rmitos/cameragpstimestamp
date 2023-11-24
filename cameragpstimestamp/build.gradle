@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
     id 'maven-publish'
 }
 
@@ -84,7 +85,7 @@ afterEvaluate {
                 from components.release
                 groupId = 'com.github.rmitos'
                 artifactId = 'cameragpstimestamp'
-                version = '1.0.15'
+                version = '1.0.16'
             }
         }
     }

@@ -4,5 +4,6 @@ class CameraGpsConstants {
     companion object{
         const val tempImageFolder = "temp_images"
         const val filePathExtra = "file_path"
+        const val locationExtra = "location"
     }
 }

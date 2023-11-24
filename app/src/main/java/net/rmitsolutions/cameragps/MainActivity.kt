@@ -4,11 +4,13 @@ import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import net.rmitsolutions.camera_gps_timestamp.CameraActivity
 import net.rmitsolutions.camera_gps_timestamp.CameraGpsConstants
+import net.rmitsolutions.camera_gps_timestamp.LocationModel
 import net.rmitsolutions.cameragps.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -35,6 +37,8 @@ class MainActivity : AppCompatActivity() {
                 val uri =
                     result.data!!.extras!!.getParcelable<Uri>(CameraGpsConstants.filePathExtra)
                 binding.imageView.setImageURI(uri)
+                val location = result.data!!.extras!!.getParcelable<LocationModel>(CameraGpsConstants.locationExtra)
+                Log.d("", "${location?.latitude}-${location?.longitude}")
             }
         }
 }
